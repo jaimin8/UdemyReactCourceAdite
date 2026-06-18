@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
+import chefImg from './assets/chef.svg'
 import './App.css'
 
 
@@ -13,10 +14,20 @@ function MyHeader(){
   return(
     <header>
       <h1>{mynamearr[randomname(2)]}'s page</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam minus impedit nisi, alias doloribus consequatur est optio ad perferendis unde fugit quia blanditiis numquam. Optio unde, cumque ab tempora voluptate quis quidem, voluptatum quos aspernatur, molestias error. Modi, consequatur quas officia aperiam perspiciatis quae placeat neque suscipit ea corporis, labore quam necessitatibus dolorem vel incidunt eaque aut tenetur! Facilis perferendis praesentium alias quo, mollitia voluptate possimus natus minima ut commodi magnam reprehenderit animi cum quam, cumque odio voluptates vero similique ipsum eveniet saepe aliquid pariatur libero eaque! Vel, culpa a nihil eos minima est explicabo ipsa soluta accusamus qui ullam.</p>
-    </header>
+      
+      </header>
   );
 }
+
+function CoreConcept(props){
+  return(<li>
+    <img src={chefImg} width="50px" alt="" srcset="" />
+     <h2>{props.title}</h2>
+     <p>{props.description}</p>
+  </li>
+  );
+}
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -31,6 +42,14 @@ function App() {
         <div>
           
     <MyHeader/>
+    <section id='coreconcept'  >
+      <ul>
+        <CoreConcept title="jaimin" description="Backend Developer"/>
+         <CoreConcept title="OM" description="HR"/>
+          <CoreConcept title="Karan" description="Frontend Developer"/>
+           <CoreConcept title="Darshan" description="DBA"/>
+      </ul>
+    </section>
     <br />
           <p>
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
