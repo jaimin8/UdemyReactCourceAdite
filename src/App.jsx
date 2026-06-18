@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import chefImg from './assets/chef.svg'
+import { Coreconcept } from './data'
 import './App.css'
 
 
@@ -44,9 +45,9 @@ function App() {
     <MyHeader/>
     <section id='coreconcept'  >
       <ul>
-        <CoreConcept title="jaimin" description="Backend Developer"/>
+        <CoreConcept title={Coreconcept[0].title} description={Coreconcept[0].description}/>
          <CoreConcept title="OM" description="HR"/>
-          <CoreConcept title="Karan" description="Frontend Developer"/>
+          <CoreConcept title={Coreconcept[1].title} description={Coreconcept[1].description}/>
            <CoreConcept title="Darshan" description="DBA"/>
       </ul>
     </section>
