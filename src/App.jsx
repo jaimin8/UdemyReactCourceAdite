@@ -3,153 +3,48 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import chefImg from './assets/chef.svg'
-import { Coreconcept } from './data'
+import  {Coreconcept}  from './data'
+import  MyHeader  from './MyHeader.jsx'
+import  CoreConcept  from './CoreConcept.jsx'
 import './App.css'
+import TabButton from './TabButton.jsx'
+import { consoleprint } from './TabButton.jsx'
 
 
-const mynamearr = ["jaimin","om","karan"];
-function randomname(max){
-  return Math.floor(Math.random() * (max+1));
-}
-function MyHeader(){
-  return(
-    <header>
-      <h1>{mynamearr[randomname(2)]}'s page</h1>
-      
-      </header>
-  );
-}
-
-function CoreConcept(props){
-  return(<li>
-    <img src={chefImg} width="50px" alt="" srcset="" />
-     <h2>{props.title}</h2>
-     <p>{props.description}</p>
-  </li>
-  );
-}
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const [buttons,setbutton]=useState([]);
+  function addbtn(){
+    const btnobj={
+      id:Date.now(),
+      text:`button${setCount(count+1)}${count}`
+    }
+    setbutton([...buttons,btnobj]);
+  }
+  function removebtn(btnid){
+    const btnarr=buttons.filter((btttn)=>btttn.id!==btnid);
+    setbutton(btnarr);
+  }
+  console.log("jaimin");
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          
+    <>       
     <MyHeader/>
     <section id='coreconcept'  >
       <ul>
         <CoreConcept title={Coreconcept[0].title} description={Coreconcept[0].description}/>
          <CoreConcept title="OM" description="HR"/>
-          <CoreConcept title={Coreconcept[1].title} description={Coreconcept[1].description}/>
+          <CoreConcept {...Coreconcept[1]}/>
            <CoreConcept title="Darshan" description="DBA"/>
       </ul>
+      <TabButton onclick={()=>consoleprint(" Soni")} >Give Alert</TabButton>
+      <TabButton onclick={()=>consoleprint("Champaneri")}>Give a console Log</TabButton>
+      <TabButton onclick={addbtn}>do nothing </TabButton>
+
+      {buttons.map((btn)=>(<TabButton id={btn.id} onclick={()=>{removebtn(btn.id)}}>{btn.text}</TabButton>))}
     </section>
     <br />
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      
     </>
   )
 }
